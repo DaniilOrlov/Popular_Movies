@@ -12,39 +12,43 @@ import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends AppCompatActivity {
 
-    //private final String LOG_TAG = MainActivity.class.getSimpleName();
-    public String popular = "test";
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        getPopularMovies();
+
         GridView gridview = (GridView) findViewById(R.id.gridview);
         gridview.setAdapter(new ImageAdapter(this));
+
+        //FetchMoviesTask popularMovies = new FetchMoviesTask();
+        //popularMovies.execute("popular");
 
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v,
                                     int position, long id) {
-
-
-
-                Log.v("popular ", getPopularMovies());
-
+                String picUrl = ImageAdapter.imagesURLsAdapter[position];
                 Intent intent = new Intent(MainActivity.this, DetailActivity.class);
-                intent.putExtra("id_of_pic", ImageAdapter.mThumbIds[position]);
+                intent.putExtra(Intent.EXTRA_TEXT, picUrl);
                 startActivity(intent);
             }
         });
     }
 
-    private String getPopularMovies() {
+
+
+
+
+    private void getPopularMovies() {
         FetchMoviesTask popularMovies = new FetchMoviesTask();
         try {
-            return popularMovies.execute("popular").get();
+            popularMovies.execute("popular").get();
+            //popularMovies.execute("popular");
         } catch (InterruptedException e) {
-            return "fail interrupted";
+            Log.v("error", "fail interrupted");
         } catch (ExecutionException ee) {
-            return "fail execution";
+            Log.v("error", "fail execution");
         }
 
     }

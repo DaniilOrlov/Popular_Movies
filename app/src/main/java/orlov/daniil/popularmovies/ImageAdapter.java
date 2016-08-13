@@ -11,9 +11,11 @@ import com.squareup.picasso.Picasso;
 
 public class ImageAdapter extends BaseAdapter {
     private Context mContext;
+    static String[] imagesURLsAdapter;
+    public ImageAdapter(Context c, String[] imagesURLsAdapter) {
 
-    public ImageAdapter(Context c) {
         mContext = c;
+        this.imagesURLsAdapter = imagesURLsAdapter;
     }
 
     public int getCount() {
@@ -36,7 +38,7 @@ public class ImageAdapter extends BaseAdapter {
             imageView = new ImageView(mContext);
             imageView.setLayoutParams(new GridView.LayoutParams(85, 85));
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            imageView.setPadding(8, 8, 8, 8);
+            imageView.setPadding(0, 0, 0, 0);
             imageView.setId(R.id.adapter_image_view);
         } else {
             imageView = (ImageView) convertView;
@@ -50,9 +52,11 @@ public class ImageAdapter extends BaseAdapter {
         return imageView;
     }
 
+
+
     //static ArrayList<String> imagesURLs = new ArrayList<>(20);
 
-    static String[] imagesURLsAdapter = {
+    /*static String[] imagesURLsAdapter = {
             "http://i.imgur.com/rFLNqWI.jpg",
             "http://i.imgur.com/C9pBVt7.jpg",
             "http://i.imgur.com/rT5vXE1.jpg",
@@ -73,5 +77,5 @@ public class ImageAdapter extends BaseAdapter {
             "http://i.imgur.com/aIy5R2k.jpg",
             "http://i.imgur.com/MoJs9pT.jpg",
             "http://i.imgur.com/S963yEM.jpg"
-    };
+    };*/
 }

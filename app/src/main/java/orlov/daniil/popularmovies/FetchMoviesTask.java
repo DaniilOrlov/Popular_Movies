@@ -14,6 +14,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Arrays;
 
 public class FetchMoviesTask extends AsyncTask<String, Void, String[]> {
 
@@ -129,8 +130,9 @@ public class FetchMoviesTask extends AsyncTask<String, Void, String[]> {
             }
             Log.v("popular", ImageAdapter.imagesURLs.size() + " " + ImageAdapter.imagesURLs.toString());*/
             for(int i = 0; i < 20; i++) {
-                ImageAdapter.imagesURLsAdapter[i] = result[i];
+                MainActivity.imagesURLs[i] = result[i];
             }
+            Log.v("popular ", Arrays.toString(MainActivity.imagesURLs));
         }
     }
 }
